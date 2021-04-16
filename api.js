@@ -6,7 +6,8 @@ let response = ""
 
 // GET INTENT FROM RESPONSE
 function getIntent(resData){
-  const intent = resData.intent.displayName
+  const intent = resData.queryResult.intent.displayName
+  console.log(resData.queryResult.intent)
   return intent
 }
 // GET USER DETAILS USING RESPONSE
@@ -15,11 +16,13 @@ function getName(resData){
   const userFirstName = resData
                       .originalDetectIntentRequest
                       .payload
+                      .data
                       .from
                       .first_name
   const userLastName = resData
                       .originalDetectIntentRequest
                       .payload
+                      .data
                       .from
                       .last_name
   return userLastName + " " + userFirstName
@@ -32,6 +35,7 @@ function handleIntent(resData){
   switch(intent){
     case "get-student-details":
       let name = getName(resData)
+      console.log(name)
       return name
     default:
       return "Not yet set"
@@ -45,7 +49,7 @@ function formatResponse(theData){
       {
         "text": {
           "text": [
-            `${toUser}`
+            `${theData}`
           ]
         }
       }
@@ -62,7 +66,6 @@ route.get("/api", (req, res) => {
 
 route.post("/api", (req, res) => {
     response = JSON.stringify(req.body)
-    
     let toUser = handleIntent(req.body)
     let theResponse = formatResponse(toUser)
     res.json(theResponse)
