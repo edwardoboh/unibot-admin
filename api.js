@@ -54,7 +54,8 @@ function formatResponse(theData){
       return {
             "text": {
               "text": [
-                `${aData}`
+                `${aData}`,
+                "News update #"
               ]
             }
           }
