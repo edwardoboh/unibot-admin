@@ -11,43 +11,46 @@
     <title>Unibot</title>
   </head>
   <body>
-      <div class="container">
-          <div class="mb-4">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                  <a class="navbar-brand" href="#">Dashboard</a>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Department</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Students</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">Lecturers</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="#">News Updates</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </nav>
+    <div class="mb-4">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <img src="/bot.png" alt="" width="48" height="50" class="d-inline-block align-text-top">
+              <!-- UniBot -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/">Department</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/students">Students</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/lecturers">Lecturers</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/updates">News Updates</a>
+                </li>
+              </ul>
+            </div>
           </div>
+        </nav>
+    </div>
+      <div class="container">
         <div class="card w-50">
             <div class="card-body">
               <h5 class="card-title">API Response</h5>
               <!-- <p class="card-text"><%= response %></p> -->
             <div>
-              <pre>
+              <!-- <pre> -->
                 <code>
                 <%= response %>
                 </code>
-              </pre>
+              <!-- </pre> -->
             </div>
               <a href="#" class="btn btn-primary">Refresh</a>
             </div>

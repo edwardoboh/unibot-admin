@@ -7,12 +7,10 @@ let response = ""
 // GET INTENT FROM RESPONSE
 function getIntent(resData){
   const intent = resData.queryResult.intent.displayName
-  console.log(resData.queryResult.intent)
   return intent
 }
 // GET USER DETAILS USING RESPONSE
 function getName(resData){
-  // make request to database to get other user details
   const userFirstName = resData
                       .originalDetectIntentRequest
                       .payload
@@ -34,9 +32,14 @@ function handleIntent(resData){
 
   switch(intent){
     case "get-student-details":
+      // make request to database to get other user details
       let name = getName(resData)
-      console.log(name)
       return name
+    case "get-news-update":
+      // fetch last 3 updates from the database
+      let news_1 = "School is resumming April 20th"
+      let news_2 = "Second semester exam begins July 14th"
+      return [news_1, news_2]
     default:
       return "Not yet set"
   }
@@ -44,18 +47,32 @@ function handleIntent(resData){
 
 // FORMAT THE TEXT TO BE SENT TO THE USER
 function formatResponse(theData){
-  const unibotRes = {
-    "fulfillmentMessages": [
-      {
-        "text": {
-          "text": [
-            `${theData}`
-          ]
+  let unibotRes
+
+  if(Array.isArray(theData)){
+    unibotRes = theData.map(aData => {
+      return {
+            "text": {
+              "text": [
+                `${aData}`
+              ]
+            }
+          }
+    })
+  }else{
+    unibotRes = 
+        {
+          "text": {
+            "text": [
+              `${theData}`
+            ]
+          }
         }
-      }
-    ]
   }
-  return unibotRes
+  
+  return {
+    "fulfillmentMessages": unibotRes
+  }
 }
 
 // API ENDPOINTS FOR THIS SERVER
