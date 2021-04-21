@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../layouts/head.ejs')%>
+<body>
+    <%- include('../layouts/header.ejs') %>
+    <div class="container">
+        <p class="h3 mb-4 text-center text-secondary">Update Department Details</p>
+        <form method="POST" action="/department">            
+            <div class="row mb-2">
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" id="hod" name="hod" class="form-control" value="<%= resp[0].hod %>" required/>
+                    <label class="form-label" for="hod">HOD</label>
+                </div>
+                </div>
+            <!-- Text input -->
+            <div class="form-outline mb-2 col">
+              <input type="text" name="location" id="form6Example4" class="form-control" value="<%= resp[0].location %>" required/>
+              <label class="form-label" for="form6Example4">Department Location</label>
+            </div>
+          
+            <!-- Email input -->
+            <div class="form-outline mb-2 col">
+              <input type="email" name="email" id="form6Example5" class="form-control" value="<%= resp[0].email %>" required/>
+              <label class="form-label" for="form6Example5">Department Email</label>
+            </div>
+            </div>
+            <div class="row mb-2">
+                <!-- Number input -->
+                <div class="form-outline mb-2 col">
+                <input type="number" name="numOfCourses" id="noc" class="form-control" value="<%= resp[0].numOfCourses %>" required/>
+                <label class="form-label" for="noc">No. of Courses</label>
+                </div>
+
+                <!-- Number input -->
+                <div class="form-outline mb-2 col">
+                    <input type="number" name="totalNumOfStud" id="nos" class="form-control" value="<%= resp[0].totalNumOfStud %>" required/>
+                    <label class="form-label" for="nos">No. of Students</label>
+                </div>
+
+                <!-- Number input -->
+                <div class="form-outline mb-2 col">
+                    <input type="number" name="totalNumOfLec" id="nol" class="form-control" value="<%= resp[0].totalNumOfLec %>" required />
+                    <label class="form-label" for="nol">No. of Lectures</label>
+                </div>
+            </div>
+            <hr>
+            <label class="form-label" for="nol">No. of Students in each level</label>
+            <div class="row mb-2">
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text" id="nos1">100L</span>
+                        <input type="number" name="totalStudInClass100" class="form-control" placeholder="" aria-label="No. of Students" aria-describedby="basic-addon1" 
+                        value="<%= resp[0].totalStudInClass.l100 %>" required>
+                    </div>
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text" id="nos2">200L</span>
+                        <input type="number" name="totalStudInClass200" class="form-control" placeholder="" aria-label="No. of Students" aria-describedby="basic-addon1"
+                        value="<%= resp[0].totalStudInClass.l200 %>" required>
+                    </div>
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text" id="nos3">300L</span>
+                        <input type="number" name="totalStudInClass300" class="form-control" placeholder="" aria-label="No. of Students" aria-describedby="basic-addon1"
+                        value="<%= resp[0].totalStudInClass.l300 %>" required>
+                    </div>
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text" id="nos4">400L</span>
+                        <input type="number" name="totalStudInClass400" class="form-control" placeholder="" aria-label="No. of Students" aria-describedby="basic-addon1"
+                        value="<%= resp[0].totalStudInClass.l400 %>" required>
+                    </div>
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text" id="nos5">500L</span>
+                        <input type="number" name="totalStudInClass500" class="form-control" placeholder="" aria-label="No. of Students" aria-describedby="basic-addon1"
+                        value="<%= resp[0].totalStudInClass.l500 %>" required>
+                    </div>
+            </div>
+
+            <!--  -->
+
+            <!-- <hr> -->
+            <label class="form-label" for="nol">Course Adviser for each level</label>
+            <div class="row">
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text" id="basic-addon1">100L</span>
+                        <input type="text" name="courseAdvisers100" class="form-control" placeholder="" aria-label="Course Adviser" aria-describedby="basic-addon1"
+                        value="<%= resp[0].courseAdvisers.l100 %>" required>
+                    </div>
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text" id="basic-addon1">200L</span>
+                        <input type="text" name="courseAdvisers200" class="form-control" placeholder="" aria-label="Course Adviser" aria-describedby="basic-addon1"
+                        value="<%= resp[0].courseAdvisers.l200 %>" required>
+                    </div>
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text" id="basic-addon1">300L</span>
+                        <input type="text" name="courseAdvisers300" class="form-control" placeholder="" aria-label="Course Adviser" aria-describedby="basic-addon1"
+                        value="<%= resp[0].courseAdvisers.l300 %>" required>
+                    </div>
+            </div>
+            <div class="row mb-2">
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text" id="basic-addon1">400L</span>
+                        <input type="text" name="courseAdvisers400" class="form-control" placeholder="" aria-label="Course Adviser" aria-describedby="basic-addon1"
+                        value="<%= resp[0].courseAdvisers.l400 %>" required>
+                    </div>
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text" id="basic-addon1">500L</span>
+                        <input type="text" name="courseAdvisers500" class="form-control" placeholder="" aria-label="Course Adviser" aria-describedby="basic-addon1"
+                        value="<%= resp[0].courseAdvisers.l500 %>" required>
+                    </div>
+            </div>
+            <!-- Message input -->
+            <div class="form-outline mb-2">
+              <textarea name="deptHistory" class="form-control" id="form6Example7" rows="2" required>
+                  <%= resp[0].history %></textarea>
+              <label class="form-label" for="form6Example7">Department History</label>
+            </div>
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-2">Update</button>
+          </form>
+    </div>
+    <%- include('../layouts/bottom.ejs') %>
+</body>
+</html>
