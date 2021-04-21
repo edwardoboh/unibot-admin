@@ -2,10 +2,10 @@ const express = require("express")
 const route = express.Router()
 const Department = require('./models/Department')
 let response = ""
-let deptData;
-Department.find((err, resp) => {
-  deptData = resp[0]
-})
+// let deptData;
+// Department.find((err, resp) => {
+//   deptData = resp[0]
+// })
 
 // async function fetchAllData(){
 //   Department.find((err, resp) => {
@@ -109,6 +109,75 @@ route.post("/api", (req, res) => {
     let toUser = handleIntent(req.body)
     let theResponse = formatResponse(toUser)
     res.json(theResponse)
+})
+
+route.post("/test", (req, res) => {
+  Department.find().then(resp => {
+    let deptData;
+    deptData = resp[0]
+  
+  let intent = req.body.queryResult.intent.displayName
+  let response;
+  let unibotRes;
+
+  switch(intent){
+    case "get-student-details":
+      // make request to database to get other user details
+      let name = getName(resData)
+      response = name
+      break;
+    case "get-news-update":
+      // fetch last 3 updates from the database
+      let news_1 = "School is resumming April 20th"
+      let news_2 = "Second semester exam begins July 14th"
+      response = [news_1, news_2]
+      break;
+    case "hod-of-cpe":  
+      response = deptData.hod
+      break;
+    case "cpe-location":
+      response = deptData.location
+      break;
+    case "cpe-history":
+      response = deptData.history
+      break;
+    case "cpe-email":
+      response = `Email address is ${deptData.email}`
+      break;
+    case "number-of-courses":
+      response = `Total number of offered courses is ${deptData.numOfCourses}`
+      break;
+    case "number-of-students":
+      response = `Total number of Students is ${deptData.totalNumOfStud}`
+      break;
+    case "number-of-lecturers":
+      response = `There are ${deptData.totalNumOfLec} lectures in CPE`
+      break;
+    default:
+      response = "Not yet set"
+  }
+  if(Array.isArray(response)){
+    unibotRes = response.map(aData => {
+      return {
+            "text": {
+              "text": [
+                `${aData}`
+              ]
+            }
+          }
+    })
+  }else{
+    unibotRes = 
+        {
+          "text": {
+            "text": [
+              `${response}`
+            ]
+          }
+        }
+  }
+  res.json({"fulfillmentMessages": unibotRes})
+})
 })
 
 // ADMIN DASHBOARD RENDER HTML PAGES
