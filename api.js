@@ -112,9 +112,22 @@ route.post("/api", (req, res) => {
 })
 
 route.post("/test", (req, res) => {
-  Department.find().then(resp => {
+  res.json({"fulfillmentMessages": {
+    "text": {
+      "text": [
+        "Request receiver from node server"
+      ]
+    }
+  }})
+  // Department.find().then(resp => {
+  Department.find((err, resp) => {
+    if (err){
+      console.log("Error has occured in test")
+      return console.log(err)
+    }
     let deptData;
     deptData = resp[0]
+    // deptData = resp
   
   let intent = req.body.queryResult.intent.displayName
   let response;
@@ -176,7 +189,7 @@ route.post("/test", (req, res) => {
           }
         }
   }
-  res.json({"fulfillmentMessages": unibotRes})
+  // res.json({"fulfillmentMessages": unibotRes})
 })
 })
 
