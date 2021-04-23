@@ -2,10 +2,10 @@ const express = require("express");
 const route = express.Router();
 const Department = require("./models/Department");
 let response = "";
-let deptData;
-Department.find((err, resp) => {
-  deptData = resp[0];
-});
+// let deptData;
+// Department.find((err, resp) => {
+//   deptData = resp[0];
+// });
 
 // async function fetchAllData(){
 //   Department.find((err, resp) => {
@@ -31,7 +31,7 @@ function getName(resData) {
 }
 
 // HANDLE INTENT GOTTEN FROM THE RESPONSE
-function handleIntent(resData) {
+function handleIntent(resData, deptData) {
   const intent = getIntent(resData);
 
   switch (intent) {
@@ -95,9 +95,12 @@ function formatResponse(theData) {
 route.post("/api", (req, res) => {
   // fetchAllData()
   response = JSON.stringify(req.body);
-  let toUser = handleIntent(req.body);
-  let theResponse = formatResponse(toUser);
-  res.json(theResponse);
+  Department.find((err, resp) => {
+    let deptData = resp[0];
+    let toUser = handleIntent(req.body, deptData);
+    let theResponse = formatResponse(toUser);
+    res.json(theResponse);
+  });
 });
 
 // ADMIN DASHBOARD RENDER HTML PAGES
@@ -178,14 +181,17 @@ route.get("/", (req, res) => {
 
 route.get("/department", (req, res) => {
   Department.find().then((resp) => {
-    return res.render("pages/department", { resp, activePage: "department" });
+    return res.render("pages/department", { resp, activePage: "department", alert: false });
   });
 });
 
 route.post("/department", (req, res) => {
   const updated = formatForUpdate(req.body);
   Department.findOneAndReplace({}, updated).then(() => {
-    return res.send("Replace successful");
+    // return res.send("Replace successful");
+    Department.find().then((resp) => {
+      return res.render("pages/department", { resp, activePage: "department",  alert: true });
+    });
   });
 });
 

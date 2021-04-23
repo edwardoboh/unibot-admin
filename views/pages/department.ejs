@@ -4,6 +4,16 @@
 <body>
     <%- include('../layouts/header.ejs') %>
     <div class="container">
+        <!-- <%if (alert){%>
+                <div class="alert alert-success text-center" role="alert">
+                    Update Successful!
+                </div>
+        <%}%> -->
+        <%if (alert){%>
+            <script>
+            alert("Update Successful!")
+            </script>
+        <%}%>
         <p class="h3 mb-4 text-center text-secondary">Update Department Details</p>
         <form method="POST" action="/department">            
             <div class="row mb-2">
